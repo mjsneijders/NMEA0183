@@ -177,9 +177,9 @@ bool NMEA0183ParseDBT_nc(const tNMEA0183Msg &NMEA0183Msg,  double &Depth ) {
 		double Feet = NMEA0183GetDouble(NMEA0183Msg.Field(4));
 		if ( Metres!=NMEA0183DoubleNA){
 			Depth=Metres; 
-		}elseif( Fathoms!=NMEA0183DoubleNA){
+		}else if( Fathoms!=NMEA0183DoubleNA){
 			Depth=(Fathoms/mToFathoms); 
-		}elseif(Feet!=NMEA0183DoubleNA){
+		}else if(Feet!=NMEA0183DoubleNA){
 			Depth=(Feet/mToFeet);
 		}else Depth=NMEA0183DoubleNA;
 	}
