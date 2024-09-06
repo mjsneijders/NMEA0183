@@ -169,6 +169,23 @@ bool NMEA0183SetDBS(tNMEA0183Msg &NMEA0183Msg, double Depth, const char *Src) {
 
 //*****************************************************************************
 // $IIDBT,32.0,f,10.5,M,5.7,F*hh
+bool NMEA0183ParseDBT_nc(const tNMEA0183Msg &NMEA0183Msg,  double &Depth ) {
+	bool result=( NMEA0183Msg.FieldCount()>= 6);
+	if ( result ) {
+		double Fathoms = NMEA0183GetDouble(NMEA0183Msg.Field(0));
+		double Metres = NMEA0183GetDouble(NMEA0183Msg.Field(2));
+		double Feet = NMEA0183GetDouble(NMEA0183Msg.Field(4));
+		if ( Metres!=NMEA0183DoubleNA){
+			Depth=Metres; 
+		}elseif( Fathoms!=NMEA0183DoubleNA){
+			Depth=(Fathoms/mToFathoms) 
+		}elseif(Feet!=NMEA0183DoubleNA){
+			Depth=(Feet/mToFeet)
+		}else Depth=NMEA0183DoubleNA;
+	}
+	return result;
+}
+
 bool NMEA0183SetDBT(tNMEA0183Msg &NMEA0183Msg, double Depth, const char *Src) {
   return NMEA0183SetDepth(NMEA0183Msg,"DBT",Depth,Src);
 }
