@@ -178,9 +178,9 @@ bool NMEA0183ParseDBT_nc(const tNMEA0183Msg &NMEA0183Msg,  double &Depth ) {
 		if ( Metres!=NMEA0183DoubleNA){
 			Depth=Metres; 
 		}elseif( Fathoms!=NMEA0183DoubleNA){
-			Depth=(Fathoms/mToFathoms) 
+			Depth=(Fathoms/mToFathoms); 
 		}elseif(Feet!=NMEA0183DoubleNA){
-			Depth=(Feet/mToFeet)
+			Depth=(Feet/mToFeet);
 		}else Depth=NMEA0183DoubleNA;
 	}
 	return result;

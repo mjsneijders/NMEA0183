@@ -236,12 +236,12 @@ bool NMEA0183SetDBS(tNMEA0183Msg &NMEA0183Msg, double Depth, const char *Src="II
 //*****************************************************************************
 bool NMEA0183SetDBT(tNMEA0183Msg &NMEA0183Msg, double Depth, const char *Src="II");
 
-bool NMEA0183ParseDBT_nc(const tNMEA0183Msg &NMEA0183Msg,  double &Depth )
+bool NMEA0183ParseDBT_nc(const tNMEA0183Msg &NMEA0183Msg,  double &Depth );
 inline bool NMEA0183ParseDBT(const tNMEA0183Msg &NMEA0183Msg,  double &Depth ) {
   return (NMEA0183Msg.IsMessageCode("DBT")
             ?NMEA0183ParseDBT_nc(NMEA0183Msg,Depth )
             :false);
-
+}
 
 //*****************************************************************************
 // Set message to DBK/DBS/DBT automatically according to Offset
